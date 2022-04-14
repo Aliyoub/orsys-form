@@ -1,0 +1,9 @@
+- name: Output facts within a playbook
+  hosts: all
+  gather_facts: no
+
+
+  tasks:
+  - name: Print Ansible facts
+    debug:
+      msg: "L'adresse ip de {{ ansible_fqdn }} est {{ ansible_default_ipv4.address }}"

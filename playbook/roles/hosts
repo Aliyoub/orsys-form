@@ -1,0 +1,20 @@
+# utilisateur de la machine locale comme cible
+[local]
+root_local ansible_connection=local ansible_user=root
+
+[centos]
+# node1, node2, et machine comme cibles
+node1  ansible_host=172.19.10.100
+node2  ansible_host=172.19.10.101
+
+[centos:vars]
+ansible_connection=ssh
+#ansible_user=ansible
+
+
+# machine ubuntu comme cible
+[ubuntu]
+formation ansible_connection=ssh ansible_user=formation ansible_host=172.19.10.72
+
+[ftp]
+node1

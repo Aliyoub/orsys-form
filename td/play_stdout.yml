@@ -1,0 +1,14 @@
+- name: Play with stdout
+  hosts: node1
+  become: yes
+
+  tasks:
+    - name: Ma commande
+      command: echo "Je suis motivé"
+      register: res
+      failed_when: "'suiiis' in res.stdout"
+      
+    - name: Affichage sortie standard
+      debug:
+        msg: "{{ res.stdout }}"
+

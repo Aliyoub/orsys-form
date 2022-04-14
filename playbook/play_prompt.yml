@@ -1,0 +1,13 @@
+- name: Gestion de groupes
+  hosts: ubuntu
+  become: yes
+  gather_facts: no
+  vars_prompt:
+    - name: "groupe"
+      prompt: "Quel est le nom du groupe à créer"
+      private: no
+
+  tasks:
+    - name: Création de groupe
+      group:
+         name: "{{ groupe }}" 

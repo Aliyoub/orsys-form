@@ -1,0 +1,24 @@
+- name: "Expertise .... "
+  hosts: all
+  become: yes
+#  gather_facts: no
+
+  vars_prompt:
+    - name: "name"
+      prompt: "Entrez votre nom"
+      private: no
+    - name: "expertise"
+      prompt: "Entrez votre domaine d'expertise"
+      private: no  
+
+  tasks:
+    - name: "Expertise ..."
+      debug:
+        msg: "Bienvenue {{ name }}"
+      when: expertise == "ansible"
+
+    - name: "Expertise ...Else"
+      debug:
+        msg: "Bye {{ name }}"
+      when: expertise != "ansible"
+

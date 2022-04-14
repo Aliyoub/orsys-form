@@ -1,0 +1,14 @@
+- name: Play with gather facts
+  hosts: node1
+  become: yes
+  gather_facts: no
+
+  tasks:
+    - name: Ma commande
+      setup:
+      register: my_facts
+    - name: Affichage facts
+      debug:
+        #msg: "{{ my_facts }}"
+        var:  my_facts
+

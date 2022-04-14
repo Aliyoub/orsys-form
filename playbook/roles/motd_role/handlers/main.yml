@@ -1,0 +1,6 @@
+---
+# handlers file for motd_role
+- name: influxdb_started
+  debug:
+    msg: "Message de notification du lancement du service influxdb"
+

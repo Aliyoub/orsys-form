@@ -1,0 +1,481 @@
+node1 | SUCCESS => {
+    "ansible_facts": {
+        "ansible_devices": {
+            "dm-0": {
+                "holders": [],
+                "host": "",
+                "links": {
+                    "ids": [
+                        "dm-name-cl-root",
+                        "dm-uuid-LVM-OKgqK3hUkpjjOgLoNGOsTYPehFf2eC2LXgo4HHvGcBu0bxp3LT2huquFMjYYiq1K"
+                    ],
+                    "labels": [],
+                    "masters": [],
+                    "uuids": [
+                        "62a9a994-3318-4606-b7c5-038ffbe4e049"
+                    ]
+                },
+                "model": null,
+                "partitions": {},
+                "removable": "0",
+                "rotational": "1",
+                "sas_address": null,
+                "sas_device_handle": null,
+                "scheduler_mode": "",
+                "sectors": "35643392",
+                "sectorsize": "512",
+                "serial": "00000000000000000001",
+                "size": "17.00 GB",
+                "support_discard": "0",
+                "vendor": null,
+                "virtual": 1
+            },
+            "dm-1": {
+                "holders": [],
+                "host": "",
+                "links": {
+                    "ids": [
+                        "dm-name-cl-swap",
+                        "dm-uuid-LVM-OKgqK3hUkpjjOgLoNGOsTYPehFf2eC2LR19t4kkIYacwItZqWAzuEP1KhOJdhr2d"
+                    ],
+                    "labels": [],
+                    "masters": [],
+                    "uuids": [
+                        "0cafb941-f35f-48bf-bb6e-1ebd7f7ef7e9"
+                    ]
+                },
+                "model": null,
+                "partitions": {},
+                "removable": "0",
+                "rotational": "1",
+                "sas_address": null,
+                "sas_device_handle": null,
+                "scheduler_mode": "",
+                "sectors": "4194304",
+                "sectorsize": "512",
+                "serial": "00000000000000000001",
+                "size": "2.00 GB",
+                "support_discard": "0",
+                "vendor": null,
+                "virtual": 1
+            },
+            "dm-2": {
+                "holders": [],
+                "host": "",
+                "links": {
+                    "ids": [
+                        "dm-name-vg1-lv1",
+                        "dm-uuid-LVM-fewT80e6owKXYoFwrk3dZJRQtdvcPhS8mVvQD4d68ZTtkrwzE11YAJNKa4xfYySl"
+                    ],
+                    "labels": [],
+                    "masters": [],
+                    "uuids": [
+                        "39f04d5f-e366-4998-be03-a29f6cd93afd"
+                    ]
+                },
+                "model": null,
+                "partitions": {},
+                "removable": "0",
+                "rotational": "1",
+                "sas_address": null,
+                "sas_device_handle": null,
+                "scheduler_mode": "",
+                "sectors": "46137344",
+                "sectorsize": "512",
+                "size": "22.00 GB",
+                "support_discard": "0",
+                "vendor": null,
+                "virtual": 1
+            },
+            "dm-3": {
+                "holders": [],
+                "host": "",
+                "links": {
+                    "ids": [
+                        "dm-name-vg_orsys-lv_orsys",
+                        "dm-uuid-LVM-PE0y2ncMsTahShf2zaUb0daJBg0b3nK5Qp7b44WFbR9HFciJew6ucNYWTeBszIqy"
+                    ],
+                    "labels": [],
+                    "masters": [],
+                    "uuids": [
+                        "74F38C014636F55C"
+                    ]
+                },
+                "model": null,
+                "partitions": {},
+                "removable": "0",
+                "rotational": "1",
+                "sas_address": null,
+                "sas_device_handle": null,
+                "scheduler_mode": "",
+                "sectors": "6291456",
+                "sectorsize": "512",
+                "size": "3.00 GB",
+                "support_discard": "0",
+                "vendor": null,
+                "virtual": 1
+            },
+            "sda": {
+                "holders": [],
+                "host": "SATA controller: VMware SATA AHCI controller",
+                "links": {
+                    "ids": [
+                        "ata-VMware_Virtual_SATA_Hard_Drive_00000000000000000001",
+                        "scsi-0ATA_VMware_Virtual_S_00000000000000000001",
+                        "scsi-1ATA_VMware_Virtual_SATA_Hard_Drive_00000000000000000001",
+                        "scsi-35000c29610faf15d",
+                        "scsi-SATA_VMware_Virtual_S_00000000000000000001",
+                        "wwn-0x5000c29610faf15d"
+                    ],
+                    "labels": [],
+                    "masters": [],
+                    "uuids": []
+                },
+                "model": "VMware Virtual S",
+                "partitions": {
+                    "sda1": {
+                        "holders": [],
+                        "links": {
+                            "ids": [
+                                "ata-VMware_Virtual_SATA_Hard_Drive_00000000000000000001-part1",
+                                "scsi-0ATA_VMware_Virtual_S_00000000000000000001-part1",
+                                "scsi-1ATA_VMware_Virtual_SATA_Hard_Drive_00000000000000000001-part1",
+                                "scsi-35000c29610faf15d-part1",
+                                "scsi-SATA_VMware_Virtual_S_00000000000000000001-part1",
+                                "wwn-0x5000c29610faf15d-part1"
+                            ],
+                            "labels": [],
+                            "masters": [],
+                            "uuids": [
+                                "f01da4fe-76d3-434b-8b13-0ec150729ba7"
+                            ]
+                        },
+                        "sectors": "2097152",
+                        "sectorsize": 512,
+                        "size": "1.00 GB",
+                        "start": "2048",
+                        "uuid": "f01da4fe-76d3-434b-8b13-0ec150729ba7"
+                    },
+                    "sda2": {
+                        "holders": [
+                            "cl-swap",
+                            "cl-root"
+                        ],
+                        "links": {
+                            "ids": [
+                                "ata-VMware_Virtual_SATA_Hard_Drive_00000000000000000001-part2",
+                                "lvm-pv-uuid-1PcuZI-3Lui-CCrm-8OG4-ux2a-AOmn-yTKY74",
+                                "scsi-0ATA_VMware_Virtual_S_00000000000000000001-part2",
+                                "scsi-1ATA_VMware_Virtual_SATA_Hard_Drive_00000000000000000001-part2",
+                                "scsi-35000c29610faf15d-part2",
+                                "scsi-SATA_VMware_Virtual_S_00000000000000000001-part2",
+                                "wwn-0x5000c29610faf15d-part2"
+                            ],
+                            "labels": [],
+                            "masters": [
+                                "dm-0",
+                                "dm-1"
+                            ],
+                            "uuids": []
+                        },
+                        "sectors": "39843840",
+                        "sectorsize": 512,
+                        "size": "19.00 GB",
+                        "start": "2099200",
+                        "uuid": null
+                    }
+                },
+                "removable": "0",
+                "rotational": "1",
+                "sas_address": null,
+                "sas_device_handle": null,
+                "scheduler_mode": "mq-deadline",
+                "sectors": "41943040",
+                "sectorsize": "512",
+                "serial": "00000000000000000001",
+                "size": "20.00 GB",
+                "support_discard": "0",
+                "vendor": "ATA",
+                "virtual": 1,
+                "wwn": "0x5000c29610faf15d"
+            },
+            "sdb": {
+                "holders": [],
+                "host": "SATA controller: VMware SATA AHCI controller",
+                "links": {
+                    "ids": [
+                        "ata-VMware_Virtual_SATA_Hard_Drive_01000000000000000001",
+                        "scsi-0ATA_VMware_Virtual_S_01000000000000000001",
+                        "scsi-1ATA_VMware_Virtual_SATA_Hard_Drive_01000000000000000001",
+                        "scsi-35000c299266204ea",
+                        "scsi-SATA_VMware_Virtual_S_01000000000000000001",
+                        "wwn-0x5000c299266204ea"
+                    ],
+                    "labels": [],
+                    "masters": [],
+                    "uuids": []
+                },
+                "model": "VMware Virtual S",
+                "partitions": {
+                    "sdb1": {
+                        "holders": [
+                            "vg1-lv1"
+                        ],
+                        "links": {
+                            "ids": [
+                                "ata-VMware_Virtual_SATA_Hard_Drive_01000000000000000001-part1",
+                                "lvm-pv-uuid-L4jL6I-oFlt-XBDi-LzXT-JiO5-sMIo-ge0t2W",
+                                "scsi-0ATA_VMware_Virtual_S_01000000000000000001-part1",
+                                "scsi-1ATA_VMware_Virtual_SATA_Hard_Drive_01000000000000000001-part1",
+                                "scsi-35000c299266204ea-part1",
+                                "scsi-SATA_VMware_Virtual_S_01000000000000000001-part1",
+                                "wwn-0x5000c299266204ea-part1"
+                            ],
+                            "labels": [],
+                            "masters": [
+                                "dm-2"
+                            ],
+                            "uuids": []
+                        },
+                        "sectors": "19529728",
+                        "sectorsize": 512,
+                        "size": "9.31 GB",
+                        "start": "2048",
+                        "uuid": null
+                    }
+                },
+                "removable": "0",
+                "rotational": "1",
+                "sas_address": null,
+                "sas_device_handle": null,
+                "scheduler_mode": "mq-deadline",
+                "sectors": "20971520",
+                "sectorsize": "512",
+                "serial": "01000000000000000001",
+                "size": "10.00 GB",
+                "support_discard": "0",
+                "vendor": "ATA",
+                "virtual": 1,
+                "wwn": "0x5000c299266204ea"
+            },
+            "sdc": {
+                "holders": [],
+                "host": "SATA controller: VMware SATA AHCI controller",
+                "links": {
+                    "ids": [
+                        "ata-VMware_Virtual_SATA_Hard_Drive_02000000000000000001",
+                        "scsi-0ATA_VMware_Virtual_S_02000000000000000001",
+                        "scsi-1ATA_VMware_Virtual_SATA_Hard_Drive_02000000000000000001",
+                        "scsi-35000c291b729cd53",
+                        "scsi-SATA_VMware_Virtual_S_02000000000000000001",
+                        "wwn-0x5000c291b729cd53"
+                    ],
+                    "labels": [],
+                    "masters": [],
+                    "uuids": []
+                },
+                "model": "VMware Virtual S",
+                "partitions": {
+                    "sdc1": {
+                        "holders": [
+                            "vg1-lv1"
+                        ],
+                        "links": {
+                            "ids": [
+                                "ata-VMware_Virtual_SATA_Hard_Drive_02000000000000000001-part1",
+                                "lvm-pv-uuid-mx31L0-RQJb-rAWZ-vl63-o9C1-GAJr-GF0KTS",
+                                "scsi-0ATA_VMware_Virtual_S_02000000000000000001-part1",
+                                "scsi-1ATA_VMware_Virtual_SATA_Hard_Drive_02000000000000000001-part1",
+                                "scsi-35000c291b729cd53-part1",
+                                "scsi-SATA_VMware_Virtual_S_02000000000000000001-part1",
+                                "wwn-0x5000c291b729cd53-part1"
+                            ],
+                            "labels": [],
+                            "masters": [
+                                "dm-2"
+                            ],
+                            "uuids": []
+                        },
+                        "sectors": "13670400",
+                        "sectorsize": 512,
+                        "size": "6.52 GB",
+                        "start": "2048",
+                        "uuid": null
+                    },
+                    "sdc2": {
+                        "holders": [
+                            "vg1-lv1"
+                        ],
+                        "links": {
+                            "ids": [
+                                "ata-VMware_Virtual_SATA_Hard_Drive_02000000000000000001-part2",
+                                "lvm-pv-uuid-0qdK2m-uREs-cpnG-I1Lf-oRUT-n3Wo-h790dj",
+                                "scsi-0ATA_VMware_Virtual_S_02000000000000000001-part2",
+                                "scsi-1ATA_VMware_Virtual_SATA_Hard_Drive_02000000000000000001-part2",
+                                "scsi-35000c291b729cd53-part2",
+                                "scsi-SATA_VMware_Virtual_S_02000000000000000001-part2",
+                                "wwn-0x5000c291b729cd53-part2"
+                            ],
+                            "labels": [],
+                            "masters": [
+                                "dm-2"
+                            ],
+                            "uuids": []
+                        },
+                        "sectors": "15624192",
+                        "sectorsize": 512,
+                        "size": "7.45 GB",
+                        "start": "13672448",
+                        "uuid": null
+                    }
+                },
+                "removable": "0",
+                "rotational": "1",
+                "sas_address": null,
+                "sas_device_handle": null,
+                "scheduler_mode": "mq-deadline",
+                "sectors": "31457280",
+                "sectorsize": "512",
+                "serial": "02000000000000000001",
+                "size": "15.00 GB",
+                "support_discard": "0",
+                "vendor": "ATA",
+                "virtual": 1,
+                "wwn": "0x5000c291b729cd53"
+            },
+            "sdd": {
+                "holders": [],
+                "host": "SATA controller: VMware SATA AHCI controller",
+                "links": {
+                    "ids": [
+                        "ata-VMware_Virtual_SATA_Hard_Drive_03000000000000000001",
+                        "scsi-0ATA_VMware_Virtual_S_03000000000000000001",
+                        "scsi-1ATA_VMware_Virtual_SATA_Hard_Drive_03000000000000000001",
+                        "scsi-35000c29eaeb06870",
+                        "scsi-SATA_VMware_Virtual_S_03000000000000000001",
+                        "wwn-0x5000c29eaeb06870"
+                    ],
+                    "labels": [],
+                    "masters": [],
+                    "uuids": []
+                },
+                "model": "VMware Virtual S",
+                "partitions": {
+                    "sdd1": {
+                        "holders": [],
+                        "links": {
+                            "ids": [
+                                "ata-VMware_Virtual_SATA_Hard_Drive_03000000000000000001-part1",
+                                "scsi-0ATA_VMware_Virtual_S_03000000000000000001-part1",
+                                "scsi-1ATA_VMware_Virtual_SATA_Hard_Drive_03000000000000000001-part1",
+                                "scsi-35000c29eaeb06870-part1",
+                                "scsi-SATA_VMware_Virtual_S_03000000000000000001-part1",
+                                "wwn-0x5000c29eaeb06870-part1"
+                            ],
+                            "labels": [],
+                            "masters": [],
+                            "uuids": [
+                                "df8e661a-a549-4a22-acfa-ccfb9b95bca3"
+                            ]
+                        },
+                        "sectors": "3905536",
+                        "sectorsize": 512,
+                        "size": "1.86 GB",
+                        "start": "2048",
+                        "uuid": "df8e661a-a549-4a22-acfa-ccfb9b95bca3"
+                    },
+                    "sdd2": {
+                        "holders": [],
+                        "links": {
+                            "ids": [
+                                "ata-VMware_Virtual_SATA_Hard_Drive_03000000000000000001-part2",
+                                "scsi-0ATA_VMware_Virtual_S_03000000000000000001-part2",
+                                "scsi-1ATA_VMware_Virtual_SATA_Hard_Drive_03000000000000000001-part2",
+                                "scsi-35000c29eaeb06870-part2",
+                                "scsi-SATA_VMware_Virtual_S_03000000000000000001-part2",
+                                "wwn-0x5000c29eaeb06870-part2"
+                            ],
+                            "labels": [],
+                            "masters": [],
+                            "uuids": [
+                                "5be218c4-98e5-4a7a-8de7-d19804da62ec"
+                            ]
+                        },
+                        "sectors": "8388608",
+                        "sectorsize": 512,
+                        "size": "4.00 GB",
+                        "start": "3907584",
+                        "uuid": "5be218c4-98e5-4a7a-8de7-d19804da62ec"
+                    },
+                    "sdd3": {
+                        "holders": [
+                            "vg_orsys-lv_orsys"
+                        ],
+                        "links": {
+                            "ids": [
+                                "ata-VMware_Virtual_SATA_Hard_Drive_03000000000000000001-part3",
+                                "lvm-pv-uuid-Ta0jFx-pP3n-dgRQ-hmUf-cmdy-B7h2-LSak4r",
+                                "scsi-0ATA_VMware_Virtual_S_03000000000000000001-part3",
+                                "scsi-1ATA_VMware_Virtual_SATA_Hard_Drive_03000000000000000001-part3",
+                                "scsi-35000c29eaeb06870-part3",
+                                "scsi-SATA_VMware_Virtual_S_03000000000000000001-part3",
+                                "wwn-0x5000c29eaeb06870-part3"
+                            ],
+                            "labels": [],
+                            "masters": [
+                                "dm-3"
+                            ],
+                            "uuids": []
+                        },
+                        "sectors": "3905536",
+                        "sectorsize": 512,
+                        "size": "1.86 GB",
+                        "start": "12296192",
+                        "uuid": null
+                    },
+                    "sdd4": {
+                        "holders": [
+                            "vg_orsys-lv_orsys"
+                        ],
+                        "links": {
+                            "ids": [
+                                "ata-VMware_Virtual_SATA_Hard_Drive_03000000000000000001-part4",
+                                "lvm-pv-uuid-bX54on-Lcc8-Lbaw-wADg-FP23-Qv5b-BrmR7H",
+                                "scsi-0ATA_VMware_Virtual_S_03000000000000000001-part4",
+                                "scsi-1ATA_VMware_Virtual_SATA_Hard_Drive_03000000000000000001-part4",
+                                "scsi-35000c29eaeb06870-part4",
+                                "scsi-SATA_VMware_Virtual_S_03000000000000000001-part4",
+                                "wwn-0x5000c29eaeb06870-part4"
+                            ],
+                            "labels": [],
+                            "masters": [
+                                "dm-3"
+                            ],
+                            "uuids": []
+                        },
+                        "sectors": "3905536",
+                        "sectorsize": 512,
+                        "size": "1.86 GB",
+                        "start": "16201728",
+                        "uuid": null
+                    }
+                },
+                "removable": "0",
+                "rotational": "1",
+                "sas_address": null,
+                "sas_device_handle": null,
+                "scheduler_mode": "mq-deadline",
+                "sectors": "20971520",
+                "sectorsize": "512",
+                "serial": "03000000000000000001",
+                "size": "10.00 GB",
+                "support_discard": "0",
+                "vendor": "ATA",
+                "virtual": 1,
+                "wwn": "0x5000c29eaeb06870"
+            }
+        },
+        "discovered_interpreter_python": "/usr/libexec/platform-python"
+    },
+    "changed": false
+}

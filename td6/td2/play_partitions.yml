@@ -1,0 +1,197 @@
+- name: Gestion des partitions et volumes logiquesansible_facts.ansible_facts.ansible_device_links.ids.
+  hosts: node1
+  become: yes
+  gather_facts: false
+
+
+  tasks:
+    - name: Creation de la  partition P1 de 7 GB
+      parted:
+        device: /dev/sdc
+        number: 1 #/dev/sdc1
+        state: present
+        part_start: 0GB
+        part_end: 7GB
+      tags:
+        - part1
+
+    - name: Creation de la partition P2 de 8 GB
+      parted:
+        device: /dev/sdc
+        number: 2 #/dev/sdc2
+        state: present
+        part_start: 7GB
+        part_end: 15GB
+      tags:
+        - part2
+
+    - name: Creation de la partition P3 de 10 GB
+      parted:
+        device: /dev/sdb
+        number: 1 #/dev/sdb1 de 10G
+        state: present
+        part_end: 10GB
+      tags:
+        - part3
+
+    - name: Creation du volume de gropue contenant P1 et P3
+      lvg:
+        vg: vg1
+        pvs: /dev/sdc1,/dev/sdb1
+        pesize: 32
+      tags:
+        - part4
+
+    - name: Creation du volume logique de 17 GB
+      lvol:
+        vg: vg1
+        lv: lv1
+        size: 15g
+      tags:
+        - part5
+
+    - name: Extention du volume logique pour qu'il occupe 22 GB
+      lvol:
+        vg: vg1
+        lv: lv1
+        size: +7g
+      tags:
+        - part6
+
+    - name: Extension du Volume de groupe pour contenir P2
+      lvg:
+        vg: vg1
+        pvs: /dev/sdc1,/dev/sdb1,/dev/sdc2
+        pvresize: yes
+      tags:
+        - part7
+
+    - name: Formatage du Volume logique en xfs
+      filesystem:
+        fstype: xfs
+        dev: /dev/mapper/vg1-lv1
+      tags:
+        - part8
+
+#    - name: Automatisation du montage du volume logique dans le dossier /logical/
+   
+    - name: Montge des partitions indiquées dans le fichier /etc/fstab
+      mount:
+        path: /logical/
+        src: /dev/mapper/vg1-lv1
+        fstype: xfs
+        state: present                  
+      tags:
+        - part10
+
+    - name: Montage automatique
+      command: mount -a
+      tags:
+        - part10
+      
+    - name: Recuperation des facts
+      setup:
+      register: ansible_facts
+      tags:
+        - part11
+
+    - name: Affichage pour sdb1
+      debug:
+        msg: "La parttion sdb1 est bien définie" 
+      when: ansible_facts.ansible_facts.ansible_device_links.ids.sdb1 is defined
+      tags:
+        - part11
+
+    - name: Affichage des facts
+      debug:
+        msg: "La parttion sdb1 n'est pas définie" 
+      when: ansible_facts.ansible_facts.ansible_device_links.ids.sdb1 is not defined
+      tags:
+        - part11
+
+
+    - name: Affichage pour sdz1
+      debug:
+        msg: "La parttion sdb1 est bien définie" 
+      when: ansible_facts.ansible_facts.ansible_device_links.ids.sdz1 is defined
+      tags:
+        - part11
+
+    - name: Affichage des facts
+      debug:
+        msg: "La parttion sdz1 n'est pas définie" 
+      when: ansible_facts.ansible_facts.ansible_device_links.ids.sdz1 is not defined
+      tags:
+        - part11
+
+# RECHERCHE SDB1
+    - name: Remplissage du fichier avec disk 
+      lineinfile:     
+        path: /home/ansible/fic_to_fill
+        regexp: 'Disk :'
+        line: 'Disk : sdb1'
+      when: ansible_facts.ansible_facts.ansible_device_links.ids.sdb1 is defined
+      tags:
+        - lineinfile
+
+
+    - name: Remplissage du fichier avec hostname
+      lineinfile:     
+        path: /home/ansible/fic_to_fill
+        regexp: 'Hostname :'
+        line: 'Hostname : {{ ansible_facts.ansible_facts.ansible_hostname }}'
+      tags:
+        - lineinfile
+
+
+    - name: Remplissage du fichier avec utilisateur
+      lineinfile:     
+        path: /home/ansible/fic_to_fill
+        regexp: 'utilisateur :'
+        line: 'Hostname : {{ ansible_facts.ansible_facts.ansible_user_id }}'
+      tags:
+        - lineinfile
+
+
+# RECHERCHE SDZ1
+    - name: Remplissage du fichier avec disk 
+      lineinfile:     
+        path: /home/ansible/fic_to_fill
+        regexp: 'Disk :'
+        line: 'Disk : none'
+      when: ansible_facts.ansible_facts.ansible_device_links.ids.sdz1 is not defined
+      tags:
+        - lineinfile2
+
+    - name: Remplissage du fichier avec Hostname 
+      lineinfile:     
+        path: /home/ansible/fic_to_fill
+        regexp: 'Hostname :'
+        line: 'Hostname : none'
+      when: ansible_facts.ansible_facts.ansible_device_links.ids.sdz1 is not defined
+      tags:
+        - lineinfile2
+
+    - name: Remplissage du fichier avec utilisateur
+      lineinfile:     
+        path: /home/ansible/fic_to_fill
+        regexp: 'utilisateur :'
+        line: 'utilisateur : none'
+      when: ansible_facts.ansible_facts.ansible_device_links.ids.sdz1 is not defined
+      tags:
+        - lineinfile2
+     
+    - name: création du fichier setupoutput
+      file:
+        path: /setupoutput
+        state: touch
+        mode: u=rw,g=r,o=r
+      tags:
+        - setupoutput
+
+    - name: Copie des infos du setup dans le fichier setupoutput
+      copy:
+        content: "{{ ansible_facts }}" 
+        dest: /setupoutput
+      tags:
+        - setupoutput

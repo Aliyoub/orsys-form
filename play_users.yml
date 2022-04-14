@@ -1,0 +1,47 @@
+- name: GESTION DES UTILISATEURS
+  hosts:
+    - centos
+    - ubuntu
+  become: yes
+  
+  vars_files:
+    - users.yml
+    - userspass.yml
+  
+  tasks:
+    - name: Creation du group developpeur dans les machines centos
+      group:
+        name: developpeur
+        state: present
+      when: ("centos" in group_names)
+      tags:
+        - grpcentos
+      
+    - name: Creation du group dans les machines ubuntu
+      group:
+        name: managers
+        state: present
+      when: ("ubuntu" in group_names)
+
+
+    - name: Ajout des utilisateurs du job developer dans les machines du groupe centos 
+      user:
+        name: "{{ item.username }}"
+        #password: "{{ 'develop' | password_hash('sha512') }}"
+        password: "{{ 'mdp_dev' | password_hash('sha512') }}"
+        groups: developpeur
+        append: yes
+        state: present
+      loop: "{{ users }}"
+      when: (item.job == "developer") and ("centos" in group_names)
+
+    - name: Ajout des utilisateurs du job manager dans les machines du groupe ubuntu 
+      user:
+        name: "{{ item.username }}"
+        #password: "{{ 'manager' | password_hash('sha512') }}"
+        password: "{{ 'mdp_manager' | password_hash('sha512') }}"
+        groups: managers
+        append: yes
+        state: present
+      loop: "{{ users }}"
+      when: (item.job == "manager") and ("ubuntu" in group_names)

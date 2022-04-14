@@ -1,0 +1,7 @@
+- name: "Copie du fichier motd vers les nodes. Utilisation des roles avec ANSIBLE GALAXY"
+  hosts: ubuntu
+  become: yes
+
+  roles:
+    - role: "motd_role"
+    - role: "manala.influxdb"

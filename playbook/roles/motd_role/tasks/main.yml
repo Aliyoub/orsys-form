@@ -1,0 +1,15 @@
+---
+# tasks file for motd_role
+- name: "Copier le fichier motd - UTILISATION ANSIBLE GALAXY"
+  template:
+    src: motd.j2
+    dest: /etc/motd
+    owner: root
+    group: root
+    mode: 0644
+
+- name: "Vérification du demarrage du service influxdb"
+  service:
+    name: influxdb
+    state: started
+  notify: influxdb_started

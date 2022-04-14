@@ -1,0 +1,40 @@
+- name: "Loop .... "
+  hosts: centos
+  become: yes
+#  gather_facts: no
+
+  vars:
+    package:
+      - httpd
+      - emacs
+
+    mygroups:
+      - orsys
+      - alten
+      - ansible  
+
+    myusers:
+      - user1
+      - user2
+      - user3
+
+  tasks:
+    - name: "Installation des packages "
+      yum:
+        name: httpd
+        state: present
+    - debug:
+        msg: "Installation de {{ item }}"
+      loop: "{{ package }}"
+
+    - name: "Ajout des groupes"
+      group:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ mygroups }}"
+
+    - name: "Ajout de users"
+      user:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ myusers }}"

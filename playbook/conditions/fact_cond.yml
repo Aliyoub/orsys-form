@@ -1,0 +1,11 @@
+- name: "Affichage de message selon la distribution de la machine" 
+  hosts: all
+  become: yes
+  
+
+  tasks:
+    - name: "Affiche message ..."
+      debug:
+        msg: "{{ ansible_hostname }}: {{ ansible_distribution }}"
+      when: ansible_distribution=="RedHat" or ansible_distribution=="CentOS"
+

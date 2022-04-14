@@ -1,0 +1,10 @@
+- name: Playbook commande date
+  hosts: node1
+  become: yes
+
+  tasks:
+    - name: Affiche date
+      command: date
+      changed_when: false
+
+

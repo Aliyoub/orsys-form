@@ -1,0 +1,29 @@
+- name: Utilisation failed when
+  hosts: node1
+  become: yes
+
+  tasks:
+    - name: Copie du script vers le node 1
+      copy:
+        src: script.sh
+        dest: /home/ansible/script.sh
+        mode: 0666
+    - name: recherche motif
+      command: bash /home/ansible/script.sh orsys /etc/passwd
+      register: command_result
+#      changed_when: "'réussie' in command_result.stdout"
+      notify: motif_trouve 
+#      failed_when: "'erreur' in command_result.stdout"
+      
+
+
+  handlers:
+   - name: motif_trouve
+     command: bash cat script.sh  
+     changed_when: "'réussie' in command_result.stdout"        
+      
+   - name: contenu de la racine
+     command: ls -l /
+     changed_when: false
+
+

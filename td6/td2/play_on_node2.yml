@@ -1,0 +1,73 @@
+- name: GESTION DE STOCKAGE
+  hosts: node2
+  gather_facts: no
+  become: yes
+
+
+  tasks:
+    - name: Creation d'une partition de 7GB sur le disque /dev/sdb
+      parted:
+        device: /dev/sdb
+        number: 1
+        state: present
+        part_end: 7GB
+
+    - name: Creation d'une partition de 8GB sur le disque /dev/sdb
+      parted:
+        device: /dev/sdb
+        number: 2
+        state: present
+        part_start: 7GB
+  
+    - name: Creation d'une partition de 10GB sur le disque /dev/sdc
+      parted:
+        device: /dev/sdc
+        number: 1
+        state: present
+        part_end: 10GB
+     
+      
+    - name: Creation du volume de groupe contenant les partitions /dev/sdb1 et /dev/sdc1
+      lvg:
+        vg: vg1
+        pvs: /dev/sdb1,/dev/sdc1
+
+
+    - name: Creation du volume logique de 17GB à partir de /dev/sdb1 et /dev/sdc1
+      lvol:
+        vg: vg1
+        lv: lv1
+        size: 16.3g
+
+
+    - name: Creation du système de fichiers xfs dans la partition logique /dev/vg1/lv1
+      filesystem:
+        fstype: xfs
+        dev: /dev/vg1/lv1
+      tags:
+        - xfslv1
+
+
+    - name: Configuration du point de montage dans le fichier /etc/fstab
+      mount:
+        path: /mylogical/
+        src: /dev/vg1/lv1
+        fstype: xfs
+        state: present
+      tags:
+        - mountlv1
+
+
+    - name: Extension du volume de groupe vg1 pour contenir /dev/sdb2
+      lvg:
+        vg: vg1
+        pvs: /dev/sdb1,/dev/sdc1,/dev/sdb2
+        pvresize: yes
+      tags:
+        - vg1addsdb2
+
+
+
+
+
+

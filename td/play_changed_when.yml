@@ -1,0 +1,16 @@
+- name: Play with changed_when
+  hosts: node1
+  become: yes
+
+  tasks:
+    - name: Affichage du status de la commande ls -l
+      command: ls -l /
+      changed_when: false
+      tags:
+        - changed_when_false
+
+    - name: Affichage de la commande changed_when_true
+      command: ls -l
+      changed_when: true
+      tags:
+        changed_when_true  

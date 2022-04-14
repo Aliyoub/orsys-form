@@ -1,0 +1,9 @@
+- name: "Affichage du contenu de la variable secret du secret.yaml."
+  hosts: all
+  become: yes
+  vars_files:
+    - secret.yaml
+  tasks:
+    - name: "Affichage......"
+      debug:
+        msg: " contenu de la variable: {{ secret }}" 

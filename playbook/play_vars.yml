@@ -1,0 +1,16 @@
+- name: Gestion des variables
+  hosts: centos
+  become: yes
+  gather_facts: no
+
+#  vars:
+#    var_1: val_1
+#    var_2: val_2
+#    var_3: "{{ val_1 }} {{ val_2 }}"
+  tasks:
+    - name: Copie de variables
+      copy:
+        src: "{{ stage }}-web.html"
+        dest: /home/ansible/
+#      debug:
+#        msg: "{{ var_3 }}"

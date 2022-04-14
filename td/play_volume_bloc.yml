@@ -1,0 +1,49 @@
+- name: New 10 GB parttion
+  hosts: node1
+  become: yes
+
+  tasks:
+    - name: Creation d'une partition de 10 GB
+      parted:
+        device: /dev/sdc
+        number: 1 #/dev/sdc1 de 10G
+        state: present
+        part_end: 10GB
+      tags:
+        - part1
+
+    - name: Creation d'une première partition de 5 GB
+      parted:
+        device: /dev/sdc
+        number: 2 #/dev/sdc2
+        state: present
+        part_start: 10GB
+        part_end: 15GB
+      tags:
+        - part2
+
+    - name: Creation d'une seconde partition de 5 GB
+      parted:
+        device: /dev/sdc
+        number: 3 #/dev/sdc3
+        state: present
+        part_start: 15GB
+        part_end: 20GB
+      tags:
+        - part3
+
+    - name: Creation de gropue de volume
+      lvg:
+        vg: vg1
+        pvs: /dev/sdc1,/dev/sdc2
+        pesize: 32
+      tags:
+        - part4
+
+    - name: Redimensionnement d'un groupe de volume
+      lvg:
+        vg: vg1
+        pvs: /dev/vdb1,/dev/vdc1
+      tags:
+        - part5
+

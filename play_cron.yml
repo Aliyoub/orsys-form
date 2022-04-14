@@ -1,0 +1,16 @@
+- name: Planification de taches
+  hosts:
+    - node1
+  gather_facts: no
+  become: yes
+
+
+  tasks:
+    - name: Ecriture de la date dans f1_date 
+      cron:
+        user: "ansible"
+        name: "Ma tache"
+        minute: 59
+        hour: 22
+        job: "date >> /home/ansible/f1_date"
+

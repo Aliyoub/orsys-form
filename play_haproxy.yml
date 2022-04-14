@@ -1,0 +1,25 @@
+- name:
+  hosts:
+    - centos
+    - ubuntu
+  gather_facts: yes
+  become: yes
+
+  tasks:
+    - name: Installer httpd sur node1 et node2
+      yum:
+        name: httpd
+        state: present
+      when: ("centos" in group_names)
+      notify: restart_service
+
+    - name: Modif fichier
+      template:
+        src: index.j2
+        dest: /var/www/html/index.html
+    
+  handlers:
+    - name: restart_service
+      service:  
+        name: httpd
+        state: restarted

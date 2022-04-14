@@ -1,0 +1,13 @@
+- name: Saisie au clavier
+  hosts: ubuntu
+  become: yes
+  gather_facts: no
+  vars_prompt:
+    - name: "name"
+      prompt: "Faite votre saisie"
+      private: no  
+
+  tasks:
+    - name:  "Affichage de la  saisie"
+      debug:
+         msg: "Votre saisie est la suivante {{ name }}" 

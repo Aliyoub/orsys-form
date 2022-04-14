@@ -1,0 +1,16 @@
+- name: loop playbook demo
+  hosts: centos
+  become: yes
+ # gather_facts: no
+
+  vars:
+    - spec:
+        - devops
+        - ansible
+        - keubernetes
+    
+  tasks:
+  - name: "Print Items"
+    debug:
+      msg: "{{ item }}"
+    loop: "{{ spec }}"

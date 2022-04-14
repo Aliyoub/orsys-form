@@ -1,0 +1,11 @@
+- name: 
+  hosts:
+    - node1
+  become: yes
+  vars:
+    timesync_ntp_servers:
+      - hostname: 10.20.30.5
+        iburst: yes
+  roles:
+    - linux-system-roles.timesync
+

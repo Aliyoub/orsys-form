@@ -1,0 +1,11 @@
+- name: "Installation de  vsftpd sur les machines du groupe ftp" 
+  hosts: ftp
+  become: yes
+  
+
+  tasks:
+    - name: Install ftp ...
+      yum:
+        name: vsftpd
+        state: latest
+      when: inventory_hostname in groups["ftp"]

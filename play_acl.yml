@@ -1,0 +1,14 @@
+- name: GESTION ACL
+  hosts:
+    - node1
+  gather_facts: no
+  become: yes
+
+  tasks:
+    - name: Same as previous but using entry shorthand
+      acl:
+        path: /home/ansible/test
+        entry: default:user:orsys:rwx
+        state: present
+
+

@@ -1,0 +1,33 @@
+- name: UTILISATEUR IF... ELSE
+  hosts:
+    - node1
+  gather_facts: yes
+  become: yes
+
+  vars_prompt:
+    - name: disque
+      prompt: "Entrer le nom du disque à rechercher"
+      private: no 
+
+    - name: part
+      prompt: La partition à rechercher
+      private: no
+
+  
+  tasks:
+    - name: copie fichier
+      copy:
+        src: disk.yml
+        dest: /home/ansible/disk.yml
+    - name:
+      lineinfile:
+        path: /home/ansible/disk.yml
+        regexp: '^Disk: '
+        line: "{%if ansible_devices[disque]['partitions'][part] is defined%} 
+	{{ ansible_devices[disque]['partitions'][part]['size'] }}{%else%}'none'{%endif%}"
+
+
+        #line: "{{ ansible_devices[disque]['partitions'][part]['size'] }}"
+        #line: "{%if ansible_devices.sdb.partitions.sdb1 is defined%}la taille est 9.3GB {%else%}'none'{%endif%}"
+
+      

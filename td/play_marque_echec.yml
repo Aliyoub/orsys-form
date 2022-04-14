@@ -1,0 +1,14 @@
+- name: Installation d'un programme du web passé en variable
+  hosts: node1
+  become: yes
+  vars:
+    pkg: httpd
+
+  tasks:
+    - name: Installation du paquet httpd
+      yum:
+        name: "{{ pkg }}"
+        state: present
+      failed_when: "pkg=='httpd'" 
+
+

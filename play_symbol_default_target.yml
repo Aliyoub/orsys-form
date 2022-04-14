@@ -1,0 +1,12 @@
+- name: Mettre graphical-target par défaut => création de lien symbolique
+  hosts:
+    - node1
+  become: yes
+  
+  tasks:
+    - name: Création du lien symbolique
+      file:
+        src: /usr/lib/systemd/system/graphical.target
+        dest: /etc/systemd/system/default.target
+        state: link
+    

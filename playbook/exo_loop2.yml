@@ -1,0 +1,14 @@
+- name: loop playbook demo
+  hosts: centos
+  become: yes
+ # gather_facts: no
+
+    
+  tasks:
+  - name: "Print Items"
+    debug:
+      msg: "{{ item }}"
+    loop: 
+      - orsys
+      - projixi
+      - ansible

@@ -1,0 +1,30 @@
+- name: Install package .... 
+  become: yes
+#  hosts: node1
+  hosts: node2
+
+  vars:
+    web_package: httpd
+    db_package: mariadb-server
+    db_service: mariadb
+
+  tasks:
+    - name: Attemp to set up a webserver
+      block:
+        - name: Install {{ web_package }} package
+          yum:
+            name: "{{ web_package }}"
+            state: present
+#          ignore_errors: yes 
+      
+      rescue:
+        - name: Install {{ db_package }} package
+          yum:
+            name: "{{ db_package }}"
+            state: present
+
+      always:
+        - name: Start {{ db_service }} service
+          service:
+            name: "{{ db_service }}"
+            state: started

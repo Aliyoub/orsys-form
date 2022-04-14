@@ -1,0 +1,22 @@
+- name: My Play
+  hosts: 
+    - node1
+  become: yes
+
+  vars:
+    - web_package: httpd
+    - db_package: mariadb_server
+    - db_service: mariadb
+    
+    
+  tasks:
+    - name: Install httpd
+      yum:
+        name: "{{ web_package }}"
+        # state: absent
+        #ignore_errors: yes
+  
+    - name: Install db package
+      yum:
+        name: "{{ db_package }}"
+        # state: absent

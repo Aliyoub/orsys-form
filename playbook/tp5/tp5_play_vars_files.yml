@@ -1,0 +1,31 @@
+- name: "UTILISATION LOOP - VARS_FILES .... "
+  hosts: centos
+  become: yes
+#  gather_facts: no
+
+  vars_files:
+    - packages.yml
+    - groupes.yml
+    - users.yml
+  tasks:
+    - name: "Installation des packages "
+      yum:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ packages }}"
+   
+    - name: "Installation des packages "
+      debug:
+        msg: "Mon paquet {{ ansible_hostname }} {{ ansible_distribution }} "
+
+    - name: "Ajout des groupes"
+      group:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ groupes }}"
+
+    - name: "Ajout des users"
+      user:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ users }}"

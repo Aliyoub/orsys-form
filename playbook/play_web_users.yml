@@ -1,0 +1,41 @@
+- name: Installation Apache Server
+  hosts: ubuntu
+#  become: yes
+  gather_facts: no
+
+  tasks:
+    - name: Installation de la dernière version de apache2
+      apt:
+        name: apache2
+        state: latest
+
+    - name: Activation service apache2
+      service:
+        name: apache2
+        enabled: true
+        state: started
+     
+    - name: Copie du fichier Web sur la machine ubuntu
+      copy:
+        src: web.html
+        dest: /var/www/html/index.html   
+       
+    - name: Vérification de la connexion à la machine ubuntu
+      ping:
+    
+    - name: Création du groupe orsys
+      group:
+        name: orsys
+        state: present
+
+    - name: Création du groupe projixi
+      group:
+        name: projixi
+        state: present
+
+    - name: Ajout de l'utilisateur user1 avec ses groupes secondaires orsys et projixi
+      user: 
+        name: user1
+        groups: orsys,projixi
+        state: present
+        append: yes

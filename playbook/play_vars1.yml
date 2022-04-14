@@ -1,0 +1,14 @@
+- name: Variables internes au playbook
+  hosts: centos
+  become: yes
+  gather_facts: no
+
+  vars:
+    var_1: je
+    var_2: suis
+    var_3: libre
+    var_4: "{{ var_1 }} {{ var_2 }} {{ var_3 }} "
+  tasks:
+    - name: Affichage de la valeur des variables
+      debug:
+        msg: "{{ var_4 }}"

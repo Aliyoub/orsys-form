@@ -1,0 +1,15 @@
+- name: Output facts within a playbook
+  hosts: all
+  gather_facts: no
+
+
+  tasks:
+  - name: Collecte de faits
+    setup:
+      gather_subset:
+      - 'network'
+    register: variable_setup
+  - name: Affichage avec register
+    debug:
+      var: variable_setup
+    
